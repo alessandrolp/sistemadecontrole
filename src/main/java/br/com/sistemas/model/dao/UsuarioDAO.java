@@ -25,11 +25,11 @@ public class UsuarioDAO {
     }
 
     @Transactional
-    public void salvar(Usuario usuario){
+    public void salvar(Usuario usuario) throws DAOException{
         try {
             entityManager.merge(usuario);
-        } catch (Exception e){
-            e.printStackTrace();
+        } catch (Exception causa){ // captura a exceção do banco
+            throw new DAOException("Não foi possivel salvar",causa);
         }
     }
 

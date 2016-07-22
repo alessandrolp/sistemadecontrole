@@ -1,3 +1,4 @@
+import br.com.sistemas.model.dao.DAOException;
 import br.com.sistemas.model.dao.UsuarioDAO;
 import br.com.sistemas.model.entity.Usuario;
 import org.junit.Test;
@@ -22,14 +23,13 @@ public class TestUsuarioDAO {
     UsuarioDAO usuarioDAO;
 
     @Test
-    public void testSalvar(){
+    public void testSalvar() throws DAOException {
         //usuario.setId(3L);
         Usuario usuario = new Usuario();
-        usuario.setNome("KENNEDY");
-        usuario.setEmail("KENNEY@gmail.com");
-        usuario.setSenha("01010101");
+        usuario.setNome("ANA RITA");
+        usuario.setEmail("aninha@gmail.com");
+        usuario.setSenha("123456");
         usuarioDAO.salvar(usuario);
     }
-
 
 }
