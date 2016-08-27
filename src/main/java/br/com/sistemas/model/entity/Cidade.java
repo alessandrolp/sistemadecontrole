@@ -42,4 +42,21 @@ public class Cidade {
     public void setEstado(Estado estado) {
         this.estado = estado;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Cidade)) return false;
+
+        Cidade cidade = (Cidade) o;
+
+        if (!id.equals(cidade.id)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
 }
