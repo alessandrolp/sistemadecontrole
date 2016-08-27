@@ -20,6 +20,10 @@ public class Usuario {
 
     private String senha;
 
+    @ManyToOne
+    @JoinColumn
+    private Estado estado;
+
     public Long getId() {
         return id;
     }
@@ -50,5 +54,30 @@ public class Usuario {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Usuario usuario = (Usuario) o;
+
+        if (id != null ? !id.equals(usuario.id) : usuario.id != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
     }
 }

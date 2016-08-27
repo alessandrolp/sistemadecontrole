@@ -22,6 +22,11 @@
 
                 <p:outputLabel value="Senha:"></p:outputLabel>
                 <p:password value="#{usuarioBean.usuario.senha}"></p:password>
+
+                <p:outputLabel value="Estado:"></p:outputLabel>
+                <p:selectOneMenu value="#{usuarioBean.usuario.estado}" converter="#{estadoConverter}">
+                    <f:selectItems value="#{estadoBean.listaEstados}" var="estado" itemLabel="#{estado.uf}"></f:selectItems>
+                </p:selectOneMenu>
             </p:panelGrid>
                 <p:commandButton value="Salvar" action="#{usuarioBean.salvar}" update="@form"></p:commandButton>
         </p:panel>
@@ -36,6 +41,9 @@
                 </p:column>
                 <p:column headerText="Email">
                     <h:outputText value="#{usuario.email}"></h:outputText>
+                </p:column>
+                <p:column headerText="UF">
+                    <h:outputText value="#{usuario.estado.uf}"></h:outputText>
                 </p:column>
                 <p:column headerText="Ação">
                     <p:commandButton icon="ui-icon-pencil" title="editar" update="@form">

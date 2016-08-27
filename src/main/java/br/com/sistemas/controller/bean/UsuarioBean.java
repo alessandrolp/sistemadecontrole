@@ -33,17 +33,20 @@ public class UsuarioBean {
         listaUsuario = usuarioService.buscarTodos();
     }
 
+    //atualiza a lista de usuarios
     public void atualizaListaUsuarios(){
         listaUsuario = usuarioService.buscarTodos();
+    }
+
+    //Cria uma nova instancia para limpar os dados do formulario
+    public void limpaDados(){
+        usuario = new Usuario();
     }
 
     public void salvar(){
         try {
             usuarioService.salvar(usuario);
-
-            //limpa os dados
-            usuario = new Usuario();
-
+            limpaDados();
             atualizaListaUsuarios();
 
             //codigo da mensagem na tela "com sucesso"
@@ -59,6 +62,7 @@ public class UsuarioBean {
     public void excluir(){
         usuarioService.excluir(usuario);
         atualizaListaUsuarios();
+        limpaDados();
     }
 
     public Usuario getUsuario() {
