@@ -25,17 +25,18 @@ public class UsuarioDAO {
     }
 
     @Transactional
-    public void salvar(Usuario usuario){
+    public void salvar(Usuario usuario) throws DAOException{
         try {
             entityManager.merge(usuario);
-        } catch (Exception e){
-            e.printStackTrace();
+        } catch (Exception causa){ // captura a exceção do banco
+            throw new DAOException("Não foi possivel salvar",causa);
         }
     }
 
     @Transactional
     public void excluir(Usuario usuario){
-        entityManager.remove(usuario);
+        Usuario usuarioExcluir = buscarPorId(usuario.getId());
+        entityManager.remove(usuarioExcluir);
     }
 
     public List<Usuario> buscartodos(){

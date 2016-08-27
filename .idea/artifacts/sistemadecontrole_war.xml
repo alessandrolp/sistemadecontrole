@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="sistemadecontrole:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="sistemadecontrole-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="sistemadecontrole:war exploded" />
+    </root>
+  </artifact>
+</component>
