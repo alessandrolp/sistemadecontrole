@@ -52,4 +52,15 @@
     <!-- ao anotar @Transaction ira chamar os gerenciadores de transações -->
     <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true" />
 
+    <!-- View Scope - Integração do Spring com JSF -->
+    <bean class="org.springframework.beans.factory.config.CustomScopeConfigurer">
+        <property name="scopes">
+            <map>
+                <entry key="view">
+                    <bean class="br.com.sistemas.controller.util.ViewScope"/>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
 </beans>

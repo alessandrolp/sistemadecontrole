@@ -35,7 +35,8 @@ public class UsuarioDAO {
 
     @Transactional
     public void excluir(Usuario usuario){
-        entityManager.remove(usuario);
+        Usuario usuarioExcluir = buscarPorId(usuario.getId());
+        entityManager.remove(usuarioExcluir);
     }
 
     public List<Usuario> buscartodos(){
