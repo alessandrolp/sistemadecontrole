@@ -3,20 +3,21 @@ package br.com.sistemas.model.entity;
 import javax.persistence.*;
 
 /**
- * Created by alessandro on 16/08/16.
+ * Created by alessandro on 28/08/16.
  */
 
 @Entity
 public class Cidade {
+
     @Id
-    @SequenceGenerator(name="seq_cidade", initialValue = 1)
+    @SequenceGenerator(name = "seq_cidade", initialValue = 1)
     @GeneratedValue(generator = "seq_cidade", strategy = GenerationType.AUTO)
     private Long id;
 
     private String nome;
 
-    @JoinColumn
     @ManyToOne
+    @JoinColumn
     private Estado estado;
 
     public Long getId() {
@@ -50,13 +51,13 @@ public class Cidade {
 
         Cidade cidade = (Cidade) o;
 
-        if (!id.equals(cidade.id)) return false;
+        if (id != null ? !id.equals(cidade.id) : cidade.id != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        return id.hashCode();
+        return id != null ? id.hashCode() : 0;
     }
 }

@@ -8,8 +8,8 @@
     <display-name>sistemadecontrole</display-name>
 
     <welcome-file-list>
-        <welcome-file>admin/formusuario.xhtml</welcome-file>
-        <welcome-file>index.htm</welcome-file>
+        <!-- <welcome-file>formusuario.xhtml</welcome-file> -->
+        <welcome-file>index.xhtml</welcome-file>
     </welcome-file-list>
 
     <context-param>

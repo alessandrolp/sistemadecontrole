@@ -1,0 +1,18 @@
+<ui:fragment xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:ui="http://java.sun.com/jsf/facelets"
+             xmlns:h="http://java.sun.com/jsf/html"
+             xmlns:f="http://java.sun.com/jsf/core"
+             xmlns:p="http://primefaces.org/ui">
+
+    <ui:include src="index.xhtml"/>
+    <h:form>
+        <p:panel header="Cadastro de Estado">
+            <p:panelGrid columns="2">
+                <p:outputLabel value="UF"/>
+                <p:inputText value="#{estadoBean.estado.uf}"/>
+            </p:panelGrid>
+            <p:commandButton value="Salvar" action="#{estadoBean.salvar}" update="@form"/>
+            <p:messages></p:messages>
+        </p:panel>
+    </h:form>
+</ui:fragment>

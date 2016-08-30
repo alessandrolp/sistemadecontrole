@@ -9,34 +9,41 @@ import javax.inject.Inject;
 import java.util.List;
 
 /**
- * Created by alessandro on 21/07/16.
+ * Created by alessandro on 28/08/16.
  */
-
 @Service
 public class UsuarioService {
 
-    //Injeção de dependencia utilizando especificação JSR 330
     @Inject
     private UsuarioDAO usuarioDAO;
 
-    public void salvar(Usuario usuario) throws ServiceExceptionn {
+    public void salvar(Usuario usuario) throws ServiceException{
         try {
-            //Validação da regra de Negocios
-            if (usuario.getNome().equals(null) || usuario.getNome() == ""){
-                throw new ServiceExceptionn("Nome não pode estar em branco");
+            //validacao da regra de negocio
+            if(usuario.getNome() == null || usuario.getNome() == ""){
+                throw new ServiceException("Usuario não pode estar sem nome");
+            } else if(usuario.getEmail() == null || usuario.getEmail() == ""){
+                throw new ServiceException("Usuario não pode estar sem email");
+            } else if(usuario.getSenha() == null || usuario.getSenha() == ""){
+                throw new ServiceException("Usuario não pode estar sem senha");
+            } else {
+                usuarioDAO.salvar(usuario);
             }
-            usuarioDAO.salvar(usuario);
         } catch (DAOException causa) {
-            throw new ServiceExceptionn("Não foi possivel salvar", causa);
+            throw new ServiceException("Não foi possivel salvar", causa);
         }
-    }
-
-    public List<Usuario> buscarTodos(){
-        return usuarioDAO.buscartodos();
     }
 
     public void excluir(Usuario usuario){
         usuarioDAO.excluir(usuario);
+    }
+
+    public Usuario buscarPorId(Long id){
+        return usuarioDAO.buscarPorId(id);
+    }
+
+    public List<Usuario> buscarTodos(){
+        return usuarioDAO.buscarTodos();
     }
 
 }

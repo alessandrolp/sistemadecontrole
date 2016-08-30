@@ -4,13 +4,14 @@ import javax.persistence.*;
 import java.util.List;
 
 /**
- * Created by alessandro on 16/08/16.
+ * Created by alessandro on 28/08/16.
  */
 
 @Entity
 public class Estado {
+
     @Id
-    @SequenceGenerator(name="seq_estado", initialValue = 1)
+    @SequenceGenerator(name = "seq_estado", initialValue = 1)
     @GeneratedValue(generator = "seq_estado", strategy = GenerationType.AUTO)
     private Long id;
 
@@ -50,13 +51,13 @@ public class Estado {
 
         Estado estado = (Estado) o;
 
-        if (!id.equals(estado.id)) return false;
+        if (id != null ? !id.equals(estado.id) : estado.id != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        return id.hashCode();
+        return id != null ? id.hashCode() : 0;
     }
 }

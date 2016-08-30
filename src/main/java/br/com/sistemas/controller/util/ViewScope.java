@@ -7,9 +7,9 @@ import javax.faces.context.FacesContext;
 import java.util.Map;
 
 /**
- * Implements the JSF View Scope for use by Spring. This class is registered as a Spring bean with the CustomScopeConfigurer.
+ * Created by alessandro on 28/08/16.
  */
-public class ViewScope implements Scope {
+public class ViewScope implements Scope{
 
     public Object get(String name, ObjectFactory<?> objectFactory) {
         if (FacesContext.getCurrentInstance().getViewRoot() != null) {

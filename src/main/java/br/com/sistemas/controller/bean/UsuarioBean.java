@@ -1,76 +1,42 @@
 package br.com.sistemas.controller.bean;
 
 import br.com.sistemas.model.entity.Usuario;
-import br.com.sistemas.model.service.ServiceExceptionn;
 import br.com.sistemas.model.service.UsuarioService;
 import org.springframework.stereotype.Controller;
 
-import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-import java.util.List;
 
 /**
- * Created by alessandro on 25/08/16.
+ * Created by alessandro on 28/08/16.
  */
 
 @Controller
 @ViewScoped
 public class UsuarioBean {
 
-    //este objeto vincula os dados da tela
-    private Usuario usuario = new Usuario();
-
     @Inject
     private UsuarioService usuarioService;
 
-    private List<Usuario> listaUsuario;
-
-    @PostConstruct
-    public void init(){
-        listaUsuario = usuarioService.buscarTodos();
-    }
-
-    //atualiza a lista de usuarios
-    public void atualizaListaUsuarios(){
-        listaUsuario = usuarioService.buscarTodos();
-    }
-
-    //Cria uma nova instancia para limpar os dados do formulario
-    public void limpaDados(){
-        usuario = new Usuario();
-    }
+    // este objeto vincula os dados da tela
+    private Usuario usuario = new Usuario();
 
     public void salvar(){
         try {
             usuarioService.salvar(usuario);
-            limpaDados();
-            atualizaListaUsuarios();
 
-            //codigo da mensagem na tela "com sucesso"
+            //limpa os dados do formulario da tela
+            usuario = new Usuario();
+
+            //Mensagem
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Salvo com Sucesso!", null));
-
-        } catch (ServiceExceptionn e) {
-            //codigo da mensagem na tela "com falha"
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro ao salvar: " + e.getMessage(), null));
+        } catch (Exception e){
+            //codigo da mensagem na tela
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "erro ao salvar: " + e.getMessage(), null));
             e.printStackTrace();
         }
-    }
-
-    public void excluir(){
-        usuarioService.excluir(usuario);
-        atualizaListaUsuarios();
-        limpaDados();
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
     }
 
     public UsuarioService getUsuarioService() {
@@ -81,11 +47,11 @@ public class UsuarioBean {
         this.usuarioService = usuarioService;
     }
 
-    public List<Usuario> getListaUsuario() {
-        return listaUsuario;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setListaUsuario(List<Usuario> listaUsuario) {
-        this.listaUsuario = listaUsuario;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }
