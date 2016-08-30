@@ -3,15 +3,15 @@ package br.com.sistemas.model.entity;
 import javax.persistence.*;
 
 /**
- * Created by alessandro on 16/07/16.
+ * Created by alessandro on 28/08/16.
  */
 
 @Entity
 public class Usuario {
 
     @Id
-    @SequenceGenerator(name="seq_usu", initialValue = 1)
-    @GeneratedValue(generator = "seq_usu", strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "seq_usuario", initialValue = 1)
+    @GeneratedValue(generator = "seq_usuario", strategy = GenerationType.AUTO)
     private Long id;
 
     private String nome;
@@ -19,10 +19,6 @@ public class Usuario {
     private String email;
 
     private String senha;
-
-    @ManyToOne
-    @JoinColumn
-    private Estado estado;
 
     public Long getId() {
         return id;
@@ -56,18 +52,10 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public Estado getEstado() {
-        return estado;
-    }
-
-    public void setEstado(Estado estado) {
-        this.estado = estado;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Usuario)) return false;
 
         Usuario usuario = (Usuario) o;
 

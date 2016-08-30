@@ -10,8 +10,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
- * Created by alessandro on 27/08/16.
+ * Created by alessandro on 29/08/16.
  */
+
 @Named
 public class EstadoConverter implements Converter{
 
@@ -31,7 +32,13 @@ public class EstadoConverter implements Converter{
 
     @Override
     public String getAsString(FacesContext facesContext, UIComponent uiComponent, Object estado) {
-        Estado e = (Estado) estado;
-        return e.getId().toString();
+        try {
+            Estado est = (Estado) estado;
+            return est.getId().toString();
+        } catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+
     }
 }

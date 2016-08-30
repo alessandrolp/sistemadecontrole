@@ -1,7 +1,6 @@
 import br.com.sistemas.model.dao.DAOException;
 import br.com.sistemas.model.dao.UsuarioDAO;
 import br.com.sistemas.model.entity.Usuario;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -23,21 +22,25 @@ public class TestUsuarioDAO {
     @Inject
     UsuarioDAO usuarioDAO;
 
-   @Test
-    public void testSalvar() throws DAOException {
-        Usuario usuario = new Usuario();
-        //usuario.setId(1L);
-        usuario.setNome("JOAO PEDRO");
-        usuario.setEmail("joao@gmail.com");
-        usuario.setSenha("91919191");
-        usuarioDAO.salvar(usuario);
+    Usuario usuario = new Usuario();
+
+    //@Test
+    public void testeSalvar(){
+        usuario.setNome("Ana Rita");
+        usuario.setEmail("aninha@hotmail.com");
+        usuario.setSenha("qegasgaeg4849");
+        try {
+            usuarioDAO.salvar(usuario);
+        } catch (DAOException e) {
+            e.printStackTrace();
+        }
     }
 
     //@Test
-    public void testExcluir(){
-
-        Usuario usuarioexc = usuarioDAO.buscarPorId(1L);
-        usuarioDAO.excluir(usuarioexc);
+    public void testeExcluir(){
+        Usuario usuarioExcluir = usuarioDAO.buscarPorId(10L);
+        usuarioDAO.excluir(usuarioExcluir);
     }
+
 
 }

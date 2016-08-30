@@ -10,26 +10,25 @@ import javax.persistence.Query;
 import java.util.List;
 
 /**
- * Created by alessandro on 16/07/16.
+ * Created by alessandro on 28/08/16.
  */
-
 @Repository
 public class UsuarioDAO {
 
-    //injeção de dependencia do Entity Manager
+    //Injeção de dependencia do entity manager
     @PersistenceContext
     EntityManager entityManager;
 
-    public UsuarioDAO(){
-
+    public UsuarioDAO() {
     }
 
     @Transactional
     public void salvar(Usuario usuario) throws DAOException{
         try {
             entityManager.merge(usuario);
-        } catch (Exception causa){ // captura a exceção do banco
-            throw new DAOException("Não foi possivel salvar",causa);
+        } catch (Exception causa){
+            //captura a excecao do banco
+            throw new DAOException("Não foi possivel salvar", causa);
         }
     }
 
@@ -39,13 +38,14 @@ public class UsuarioDAO {
         entityManager.remove(usuarioExcluir);
     }
 
-    public List<Usuario> buscartodos(){
-        Query consulta = entityManager.createQuery("select u from Usuario u");
-        return consulta.getResultList();
-    }
-
     public Usuario buscarPorId(Long id){
         return entityManager.find(Usuario.class, id);
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<Usuario> buscarTodos(){
+        Query consulta = entityManager.createQuery("select u from Usuario u"); //JPQL
+        return consulta.getResultList();
     }
 
 }

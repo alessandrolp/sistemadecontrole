@@ -1,6 +1,6 @@
 package br.com.sistemas.model.dao;
 
-import br.com.sistemas.model.entity.Estado;
+import br.com.sistemas.model.entity.Cidade;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,32 +14,33 @@ import java.util.List;
  */
 
 @Repository
-public class EstadoDAO {
+public class CidadeDAO {
 
     @PersistenceContext
     private EntityManager entityManager;
 
     @Transactional
-    public void salvar(Estado estado) throws DAOException {
+    public void salvar(Cidade cidade) throws DAOException {
         try {
-            entityManager.merge(estado);
+            entityManager.merge(cidade);
         } catch (Exception causa){
             throw new DAOException("Nao foi possivel salvar", causa);
         }
     }
 
-    public Estado buscarPorId(Long id){
-        return entityManager.find(Estado.class, id);
+    public Cidade buscarPorId(Long id){
+        return entityManager.find(Cidade.class, id);
     }
 
     @Transactional
-    public void excluir(Estado estado){
-        Estado estadoExcluir = buscarPorId(estado.getId());
-        entityManager.remove(estadoExcluir);
+    public void excluir(Cidade cidade){
+        Cidade cidadeExcluir = buscarPorId(cidade.getId());
+        entityManager.remove(cidadeExcluir);
     }
 
-    public List<Estado> buscarTodos(){
-        Query consulta = entityManager.createQuery("select c from Estado c");
+    public List<Cidade> buscarTodos(){
+        Query consulta = entityManager.createQuery("select c from Cidade c");
         return consulta.getResultList();
     }
+
 }
