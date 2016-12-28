@@ -1,0 +1,33 @@
+<ui:fragment xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:ui="http://java.sun.com/jsf/facelets"
+             xmlns:h="http://java.sun.com/jsf/html"
+             xmlns:f="http://java.sun.com/jsf/core"
+             xmlns:p="http://primefaces.org/ui">
+
+    <ui:include src="index.xhtml"/>
+    <h:form>
+        <p:panel header="Cadastro de Cliente">
+            <p:panelGrid columns="2">
+                <p:outputLabel value="Nome:" for="nome"/>
+                <p:inputText id="nome" value="#{clienteBean.cliente.nome}"/>
+                <p:outputLabel value="CPF: " for="cpf"/>
+                <p:inputText id="cpf" value="#{clienteBean.cliente.cpf}"/>
+                <p:outputLabel value="RG: " for="rg"/>
+                <p:inputText id="rg" value="#{clienteBean.cliente.rg}" />
+                <p:outputLabel value="Endereço: " for="endereco"/>
+                <p:inputText id="endereco" value="#{clienteBean.cliente.endereco}"/>
+                <p:outputLabel value="Numero: " for="numero"/>
+                <p:inputText id="numero" value="#{clienteBean.cliente.numero}"/>
+                <p:outputLabel value="Cidade: " for="cidade"/>
+                <p:inputText id="cidade" value="#{clienteBean.cliente.cidade}"/>
+                <p:outputLabel value="Estado"/>
+                <p:selectOneMenu value="#{clienteBean.cliente.estado}" converter="#{estadoConverter}">
+                    <f:selectItem noSelectionOption="true" itemLabel="Selecione"/>
+                    <f:selectItems value="#{estadoBean.listaEstados}" var="estado" itemLabel="#{estado.uf}"/>
+                </p:selectOneMenu>
+            </p:panelGrid>
+            <p:commandButton value="Salvar" action="#{clienteBean.salvar}" update="@form"/>
+            <p:messages></p:messages>
+        </p:panel>
+    </h:form>
+</ui:fragment>

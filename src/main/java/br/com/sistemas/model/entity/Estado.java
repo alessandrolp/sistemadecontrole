@@ -1,7 +1,6 @@
 package br.com.sistemas.model.entity;
 
 import javax.persistence.*;
-import java.util.List;
 
 /**
  * Created by alessandro on 28/08/16.
@@ -17,9 +16,6 @@ public class Estado {
 
     private String uf;
 
-    @OneToMany(mappedBy = "estado", fetch = FetchType.LAZY)
-    private List<Cidade> cidades;
-
     public Long getId() {
         return id;
     }
@@ -34,14 +30,6 @@ public class Estado {
 
     public void setUf(String uf) {
         this.uf = uf;
-    }
-
-    public List<Cidade> getCidades() {
-        return cidades;
-    }
-
-    public void setCidades(List<Cidade> cidades) {
-        this.cidades = cidades;
     }
 
     @Override
