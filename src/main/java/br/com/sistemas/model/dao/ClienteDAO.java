@@ -39,7 +39,7 @@ public class ClienteDAO {
     }
 
     public List<Cliente> buscarTodos(){
-        Query consulta = entityManager.createQuery("select c from Cliente c");
+        Query consulta = entityManager.createQuery("select c from Cliente c", Cliente.class);
         return consulta.getResultList();
     }
 

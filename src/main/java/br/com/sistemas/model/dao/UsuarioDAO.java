@@ -23,9 +23,9 @@ public class UsuarioDAO {
     }
 
     @Transactional
-    public void salvar(Usuario usuario) throws DAOException{
+    public Usuario salvar(Usuario usuario) throws DAOException{
         try {
-            entityManager.merge(usuario);
+            return entityManager.merge(usuario);
         } catch (Exception causa){
             //captura a excecao do banco
             throw new DAOException("Não foi possivel salvar", causa);
@@ -33,19 +33,32 @@ public class UsuarioDAO {
     }
 
     @Transactional
-    public void excluir(Usuario usuario){
-        Usuario usuarioExcluir = buscarPorId(usuario.getId());
-        entityManager.remove(usuarioExcluir);
+    public void excluir(Usuario usuario) throws DAOException {
+        try {
+            Usuario usuarioManaged = entityManager.getReference(Usuario.class, usuario.getId()); // carregando o objeto usuario novamente para o contexto do entity manager, pois estava detached (fora do contexto).
+            entityManager.remove(usuarioManaged);
+        } catch (Exception e){
+            throw new DAOException("Não foi possivel excluir", e);
+        }
     }
 
     public Usuario buscarPorId(Long id){
         return entityManager.find(Usuario.class, id);
     }
 
-    @SuppressWarnings("unchecked")
     public List<Usuario> buscarTodos(){
         Query consulta = entityManager.createQuery("select u from Usuario u"); //JPQL
         return consulta.getResultList();
+    }
+
+    public Usuario buscarEmail(String email){
+        try {
+            Query consulta = entityManager.createQuery("select u from Usuario u where u.email=:emailParam");
+            consulta.setParameter("emailParam", email);
+            return (Usuario) consulta.getSingleResult();
+        } catch (Exception e){
+            return null;
+        }
     }
 
 }

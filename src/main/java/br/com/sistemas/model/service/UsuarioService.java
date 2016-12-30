@@ -17,25 +17,21 @@ public class UsuarioService {
     @Inject
     private UsuarioDAO usuarioDAO;
 
-    public void salvar(Usuario usuario) throws ServiceException{
-        try {
-            //validacao da regra de negocio
-            if(usuario.getNome() == null || usuario.getNome() == ""){
-                throw new ServiceException("Usuario não pode estar sem nome");
-            } else if(usuario.getEmail() == null || usuario.getEmail() == ""){
-                throw new ServiceException("Usuario não pode estar sem email");
-            } else if(usuario.getSenha() == null || usuario.getSenha() == ""){
-                throw new ServiceException("Usuario não pode estar sem senha");
-            } else {
-                usuarioDAO.salvar(usuario);
-            }
-        } catch (DAOException causa) {
-            throw new ServiceException("Não foi possivel salvar", causa);
+    public Usuario salvar(Usuario usuario) throws ServiceException, DAOException {
+        Usuario usuarioExistente = usuarioDAO.buscarEmail(usuario.getEmail());
+        if(usuarioExistente != null){
+            throw  new ServiceException("Usuario já existente!");
+        } else {
+            return usuarioDAO.salvar(usuario);
         }
     }
 
-    public void excluir(Usuario usuario){
-        usuarioDAO.excluir(usuario);
+    public void excluir(Usuario usuario) throws ServiceException {
+        try {
+            usuarioDAO.excluir(usuario);
+        } catch (DAOException e) {
+            throw new ServiceException("Não foi possivel excluir", e);
+        }
     }
 
     public Usuario buscarPorId(Long id){

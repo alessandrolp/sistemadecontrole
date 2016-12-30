@@ -1,0 +1,47 @@
+<ui:composition template="../template/template.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:ui="http://java.sun.com/jsf/facelets"
+             xmlns:h="http://java.sun.com/jsf/html"
+             xmlns:f="http://java.sun.com/jsf/core"
+             xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="conteudo">
+        <h:form>
+            <h:selectOneMenu value="#{usuarioController.usuario.perfil}" converter="#{perfilConverter}">
+                <f:selectItem itemValue="" itemLabel="Perfil" noSelectionOption="true"></f:selectItem>
+                <f:selectItems value="#{perfilController.perfilList}" var="perfil" itemLabel="#{perfil.descricao}"></f:selectItems>
+            </h:selectOneMenu>
+            Nome:
+            <h:inputText value="#{usuarioController.usuario.nome}"/>
+            Email:
+            <h:inputText value="#{usuarioController.usuario.email}">
+                <f:validator validatorId="emailValidator"/>
+            </h:inputText>
+            Senha:
+            <h:inputText value="#{usuarioController.usuario.senha}"/>
+            <h:commandButton value="Salvar" actionListener="#{usuarioController.salvar}"/>
+        </h:form>
+
+        <h:form>
+            <h:dataTable value="#{usuarioController.usuarioList}" var="usuario" border="1">
+                <f:facet name="header">Lista de Usuarios</f:facet>
+                <h:column>
+                    <f:facet name="header">PERFIL</f:facet>
+                    #{usuario.perfil.descricao}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">NOME</f:facet>
+                    #{usuario.nome}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">EMAIL</f:facet>
+                    #{usuario.email}
+                </h:column>
+                <h:column>
+                    <h:commandButton value="Editar" actionListener="#{usuarioController.editar(usuario)}"/>
+                    <h:commandButton value="Excluir" actionListener="#{usuarioController.excluir(usuario)}"/>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </ui:define>
+</ui:composition>
+

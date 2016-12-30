@@ -36,6 +36,8 @@
         <hibernate.group>org.hibernate</hibernate.group>
         <spring.version>4.2.6.RELEASE</spring.version>
         <spring.group>org.springframework</spring.group>
+        <spring.security.group>org.springframework.security</spring.security.group>
+        <spring.security.version>4.0.2.RELEASE</spring.security.version>
     </properties>
 
     <dependencies>
@@ -54,8 +56,14 @@
         <!-- log4j -->
         <dependency>
             <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.7</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
-            <version>1.7.5</version>
+            <version>1.7.7</version>
         </dependency>
 
         <!--Mysql-->
@@ -72,7 +80,7 @@
             <version>4.11</version>
         </dependency>
 
-        <!-- Spring -->
+        <!-- SPRING -->
         <dependency>
             <groupId>${spring.group}</groupId>
             <artifactId>spring-core</artifactId>
@@ -83,6 +91,7 @@
             <artifactId>spring-context</artifactId>
             <version>${spring.version}</version>
         </dependency>
+        <!-- integração com JPA -->
         <dependency>
             <groupId>${spring.group}</groupId>
             <artifactId>spring-orm</artifactId>
@@ -92,6 +101,37 @@
             <groupId>${spring.group}</groupId>
             <artifactId>spring-web</artifactId>
             <version>${spring.version}</version>
+        </dependency>
+        <!-- controle de transações -->
+        <dependency>
+            <groupId>${spring.group}</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <!-- integração spring com Junit -->
+        <dependency>
+            <groupId>${spring.group}</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <!-- Spring Security -->
+        <dependency>
+            <groupId>${spring.security.group}</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${spring.security.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>${spring.security.group}</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${spring.security.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>${spring.security.group}</groupId>
+            <artifactId>spring-security-taglibs</artifactId>
+            <version>${spring.security.version}</version>
+            <scope>runtime</scope>
         </dependency>
 
         <dependency>
@@ -124,20 +164,33 @@
 
         <dependency>
             <groupId>org.primefaces.themes</groupId>
-            <artifactId>casablanca</artifactId>
+            <artifactId>bootstrap</artifactId>
             <version>1.0.10</version>
         </dependency>
 
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
-            <version>4.0</version>
+            <version>5.2</version>
         </dependency>
 
         <dependency>
             <groupId>org.glassfish</groupId>
             <artifactId>javax.faces</artifactId>
             <version>2.2.4</version>
+        </dependency>
+
+        <!-- JSF -->
+        <dependency>
+            <groupId>com.sun.faces</groupId>
+            <artifactId>jsf-api</artifactId>
+            <version>2.2.12</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.sun.faces</groupId>
+            <artifactId>jsf-impl</artifactId>
+            <version>2.2.12</version>
         </dependency>
 
         <!-- Injeção de Dependência utilizando especificação JSR 330 -->

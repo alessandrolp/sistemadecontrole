@@ -2,18 +2,18 @@ package br.com.sistemas.controller.converter;
 
 import br.com.sistemas.model.entity.Estado;
 import br.com.sistemas.model.service.EstadoService;
+import org.springframework.stereotype.Component;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.inject.Inject;
-import javax.inject.Named;
 
 /**
  * Created by alessandro on 29/08/16.
  */
 
-@Named
+@Component
 public class EstadoConverter implements Converter{
 
     @Inject

@@ -1,4 +1,4 @@
-package br.com.sistemas.controller.bean;
+package br.com.sistemas.controller;
 
 import br.com.sistemas.model.entity.Estado;
 import br.com.sistemas.model.service.EstadoService;
@@ -17,7 +17,7 @@ import java.util.List;
 
 @Controller
 @ViewScoped
-public class EstadoBean {
+public class EstadoController {
 
     @Inject
     private EstadoService estadoService;

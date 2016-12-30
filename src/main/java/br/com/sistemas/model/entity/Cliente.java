@@ -1,13 +1,14 @@
 package br.com.sistemas.model.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by alessandro on 27/12/16.
  */
 
 @Entity
-public class Cliente {
+public class Cliente implements Serializable {
 
     @Id
     @SequenceGenerator(name = "seq_cliente", initialValue = 1)
@@ -101,18 +102,34 @@ public class Cliente {
 
         Cliente cliente = (Cliente) o;
 
-        if (!cpf.equals(cliente.cpf)) return false;
-        if (!id.equals(cliente.id)) return false;
-        if (!rg.equals(cliente.rg)) return false;
+        if (cpf != null ? !cpf.equals(cliente.cpf) : cliente.cpf != null) return false;
+        if (id != null ? !id.equals(cliente.id) : cliente.id != null) return false;
+        if (nome != null ? !nome.equals(cliente.nome) : cliente.nome != null) return false;
+        if (rg != null ? !rg.equals(cliente.rg) : cliente.rg != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + cpf.hashCode();
-        result = 31 * result + rg.hashCode();
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (nome != null ? nome.hashCode() : 0);
+        result = 31 * result + (cpf != null ? cpf.hashCode() : 0);
+        result = 31 * result + (rg != null ? rg.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", cpf='" + cpf + '\'' +
+                ", rg='" + rg + '\'' +
+                ", endereco='" + endereco + '\'' +
+                ", numero='" + numero + '\'' +
+                ", cidade='" + cidade + '\'' +
+                ", estado=" + estado +
+                '}';
     }
 }

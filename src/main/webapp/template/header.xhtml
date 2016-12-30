@@ -12,6 +12,7 @@
                 <p:menuitem value="Usuario" url="formusuario.xhtml" />
                 <p:menuitem value="Estado" url="formestado.xhtml" />
                 <p:menuitem value="Cliente" url="formcliente.xhtml" />
+                <p:menuitem value="Perfil" url="formperfil.xhtml" />
             </p:submenu>
 
             <p:submenu label="Actions" icon="ui-icon-gear">
@@ -28,7 +29,7 @@
 
             <f:facet name="options">
                 <p:inputText style="margin-right:10px" placeholder="Search"/>
-                <p:commandButton type="button" value="Logout" icon="ui-icon-extlink" />
+                <p:commandButton type="button" value="Logout" icon="ui-icon-extlink" /> <!-- actionListener="/j_spring_security_check" -->
             </f:facet>
         </p:menubar>
     </h:form>

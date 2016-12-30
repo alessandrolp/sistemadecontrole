@@ -5,16 +5,14 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-<f:view contentType="text/html">
-
     <h:head>
-        <ui:include src="WEB-INF/template/metatags.xhtml"/>
+        <ui:include src="../template/metatags.xhtml"/>
     </h:head>
 
     <h:body id="body">
-        <ui:include src="WEB-INF/template/header.xhtml"/>
+        <ui:include src="../template/header.xhtml"/>
 
+        <ui:insert name="conteudo" />
 
     </h:body>
-</f:view>
 </HTML>
