@@ -3,20 +3,34 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
     <h:head>
-
+        <ui:include src="/template/metatags.xhtml"/>
+        <h:outputStylesheet library="css" name="login.css" />
     </h:head>
 
     <h:body>
-        <form method="post" action="/j_spring_security_check">
-            Email:
-            <h:inputText id="email" />
-            Senha:
-            <h:inputSecret id="senha" />
-            <h:commandButton value="Login" />
-        </form>
+        <div class="container">
+            <!--
+            <form method="post" action="/j_spring_security_check">
+                Email:
+                <h:inputText id="email" />
+                Senha:
+                <h:inputSecret id="senha" />
+                <h:commandButton value="Login" />
+            </form>
+            -->
+
+            <form class="col-lg-4 col-lg-offset-4 my_form" method="post" action="/j_spring_security_check">
+                <h2 class="text-center">Sistema de Controle</h2>
+                <h:inputText id="email" class="form-control" pt:placeholder="Email" />
+                <h:inputSecret id="senha" class="form-control" pt:placeholder="Senha" />
+                <h:commandButton class="btn btn-lg btn-primary btn-block btn-login" value="Entrar" />
+                <button class="btn btn-lg btn-danger btn-block btn-login" type="submit">Cadastrar-se</button>
+            </form>
+        </div>
 
     </h:body>
 
