@@ -1,5 +1,7 @@
 package br.com.sistemas.model.entity;
 
+import javax.validation.constraints.NotNull;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -15,10 +17,13 @@ public class Usuario implements Serializable{
     @GeneratedValue(generator = "seq_usuario", strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotNull
     private String nome;
 
+    @NotNull
     private String email;
 
+    @NotNull
     private String senha;
 
     private Boolean ativo;
@@ -108,4 +113,5 @@ public class Usuario implements Serializable{
                 ", senha='" + senha + '\'' +
                 '}';
     }
+
 }

@@ -43,20 +43,31 @@ public class UsuarioController {
             //invoca o metodo salvar do usuarioService, para que possa ser encaminhado para DAO e porteriormente ser persistido no BD
             Usuario usuarioSalvo = usuarioService.salvar(usuario);
 
-            // atualiza a lista de usuarios que é apresentada na tela
+            // verifica se o usuario ja existe, se não existir, cadastra
             if(usuario.getId() == null){
+                // adiciona o novo usuario e atualiza a lista que é apresentada na tela
                 usuarioList.add(usuarioSalvo);
+
+                //Mensagem de sucesso
+                MensagemUtil.mensagemInfo(MensagemUtil.SUCESSO_SALVAR);
+            }
+            // verifica se o usuario ja existe, se ja existir, edita
+            else if(usuario.getId() != null){
+                // atualiza a lista de usuarios que é apresentada na tela
+                setUsuarioList(usuarioService.buscarTodos());
+
+                //Mensagem de sucesso
+                MensagemUtil.mensagemInfo(MensagemUtil.SUCESSO_EDITAR);
             }
 
             //limpa os dados do formulario da tela
             usuario = new Usuario();
 
-            //Mensagem de sucesso
-            MensagemUtil.mensagemInfo(MensagemUtil.SUCESSO_SALVAR);
         } catch (Exception e){
             //mensagem de erro
             MensagemUtil.mensagemErro(MensagemUtil.ERRO_SALVAR);
             e.printStackTrace();
+            usuario = new Usuario();
         }
     }
 

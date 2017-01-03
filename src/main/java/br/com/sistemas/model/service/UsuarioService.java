@@ -19,8 +19,8 @@ public class UsuarioService {
 
     public Usuario salvar(Usuario usuario) throws ServiceException, DAOException {
         Usuario usuarioExistente = usuarioDAO.buscarEmail(usuario.getEmail());
-        if(usuarioExistente != null){
-            throw  new ServiceException("Usuario já existente!");
+        if(usuarioExistente != null && usuario.getId() == null){
+            throw new ServiceException("Usuario já existente!");
         } else {
             return usuarioDAO.salvar(usuario);
         }

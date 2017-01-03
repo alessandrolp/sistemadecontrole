@@ -6,18 +6,18 @@
 
     <ui:define name="conteudo">
         <h:form>
-            <h:selectOneMenu value="#{usuarioController.usuario.perfil}" converter="#{perfilConverter}">
+            <h:selectOneMenu value="#{usuarioController.usuario.perfil}" converter="#{perfilConverter}" required="true" requiredMessage="Selecione um Perfil">
                 <f:selectItem itemValue="" itemLabel="Perfil" noSelectionOption="true"></f:selectItem>
                 <f:selectItems value="#{perfilController.perfilList}" var="perfil" itemLabel="#{perfil.descricao}"></f:selectItems>
             </h:selectOneMenu>
-            Nome:
-            <h:inputText value="#{usuarioController.usuario.nome}"/>
-            Email:
+            <h:outputLabel value="Nome:"/>
+            <h:inputText value="#{usuarioController.usuario.nome}" required="true" requiredMessage="Nome é obrigatório"/>
+            <h:outputLabel value="Email:"/>
             <h:inputText value="#{usuarioController.usuario.email}">
                 <f:validator validatorId="emailValidator"/>
             </h:inputText>
-            Senha:
-            <h:inputText value="#{usuarioController.usuario.senha}"/>
+            <h:outputLabel value="Senha:"/>
+            <h:inputText value="#{usuarioController.usuario.senha}" required="true" requiredMessage="Senha é obrigatório"/>
             <h:commandButton value="Salvar" actionListener="#{usuarioController.salvar}"/>
         </h:form>
 
@@ -26,19 +26,19 @@
                 <f:facet name="header">Lista de Usuarios</f:facet>
                 <h:column>
                     <f:facet name="header">PERFIL</f:facet>
-                    #{usuario.perfil.descricao}
+                    <h:outputText value="#{usuario.perfil.descricao}"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">NOME</f:facet>
-                    #{usuario.nome}
+                    <h:outputText value="#{usuario.nome}"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">EMAIL</f:facet>
-                    #{usuario.email}
+                    <h:outputText value="#{usuario.email}"/>
                 </h:column>
                 <h:column>
-                    <h:commandButton value="Editar" actionListener="#{usuarioController.editar(usuario)}"/>
-                    <h:commandButton value="Excluir" actionListener="#{usuarioController.excluir(usuario)}"/>
+                    <h:commandButton value="Editar" actionListener="#{usuarioController.editar(usuario)}" />
+                    <h:commandButton value="Remover" actionListener="#{usuarioController.excluir(usuario)}"/>
                 </h:column>
             </h:dataTable>
         </h:form>

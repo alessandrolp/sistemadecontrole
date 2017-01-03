@@ -16,7 +16,7 @@ public class MensagemUtil {
 
     public static final String ERRO_EXCLUIR = "Erro ao excluir";
 
-    public static final String SUCESSO_ALTERAR = "Alterado com sucesso";
+    public static final String SUCESSO_EDITAR = "Alterado com sucesso";
 
     public static final String ERRO_ALTERAR = "Erro ao alterar";
 

@@ -40,8 +40,12 @@ public class PerfilController {
             Perfil perfilSalvo = perfilService.salvar(perfil);
             if(perfil.getId() == null){
                 perfilList.add(perfilSalvo);
+                MensagemUtil.mensagemInfo(MensagemUtil.SUCESSO_SALVAR);
+            } else if(perfil.getId() != null){
+                setPerfilList(perfilService.buscarTodos());
+                MensagemUtil.mensagemInfo(MensagemUtil.SUCESSO_EDITAR);
             }
-            MensagemUtil.mensagemInfo(MensagemUtil.SUCESSO_SALVAR);
+            perfil = new Perfil();
         } catch (ServiceException e) {
             MensagemUtil.mensagemErro(MensagemUtil.ERRO_SALVAR);
             e.printStackTrace();

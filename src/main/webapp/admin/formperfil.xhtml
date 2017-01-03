@@ -6,8 +6,8 @@
 
     <ui:define name="conteudo">
         <h:form>
-            Descricao:
-            <h:inputText value="#{perfilController.perfil.descricao}"/>
+            <h:outputLabel value="Descricao:"/>
+            <h:inputText value="#{perfilController.perfil.descricao}" required="true" requiredMessage="Descrição é obrigatório"/>
             <h:commandButton value="Salvar" actionListener="#{perfilController.salvar}"/>
         </h:form>
 
@@ -16,7 +16,7 @@
                 <f:facet name="header">Lista de Perfis</f:facet>
                 <h:column>
                     <f:facet name="header">DESCRIÇÃO</f:facet>
-                    #{perfil.descricao}
+                    <h:outputText value="#{perfil.descricao}"/>
                 </h:column>
                 <h:column>
                     <h:commandButton value="Editar" actionListener="#{perfilController.editar(perfil)}"/>
